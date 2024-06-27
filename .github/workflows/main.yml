@@ -55,8 +55,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: false
-        tag: ${{ env.IMAGE_TAG }}
-        load: true
+        tags: ${{ env.IMAGE_TAG }}
 
     - name: Check we can run the Docker image
       run: docker run ${IMAGE_TAG} 3 4
