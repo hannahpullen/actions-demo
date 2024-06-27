@@ -1,0 +1,58 @@
+name: Run tests and lint
+
+on:
+  # Run whenever a pull request is opened on any branch
+  pull_request:
+    branches:
+    - "*"
+
+  # Run whenever we push to main
+  push:
+    branches:
+    - "main"
+
+jobs:
+  # Job name
+  test-and-lint:
+  
+    # Run on Windows and Linux
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    # Set which runner to use
+    runs-on: ${{ matrix.os }}
+
+    # Define environment
+    env:
+      EXE_NAME: adder.exe
+      IMAGE_TAG: adder-image
+
+    # Define steps for the job
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v4
+
+    - name: Setup Go
+      uses: actions/setup-go@v5
+
+    - name: Run Go unit tests
+      run: go test ./...
+
+    - name: Lint Go code
+      run: golangci-lint
+
+    - name: Check we can build the Go executable
+      run: go build -o ${EXE_NAME} cmd/main.go
+
+    - name: Check we can run the Go executable
+      run: ./${EXE_NAME} 1 2
+
+    - name: Check we can build the Docker image
+      uses: docker/build-push-action@v3
+      with:
+        push: false
+        tag: ${{ env.IMAGE_TAG }}
+
+    - name: Check we can run the Docker image
+      run: docker run ${IMAGE_TAG} 3 4
