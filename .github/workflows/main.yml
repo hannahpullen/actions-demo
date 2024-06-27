@@ -43,7 +43,7 @@ jobs:
       run: go test ./...
 
     - name: Lint Go code
-      run: golangci-lint
+      uses: golangci/golangci-lint-action@v6
 
     - name: Check we can build the Go executable
       run: go build -o ${EXE_NAME} cmd/main.go
