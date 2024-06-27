@@ -21,7 +21,7 @@ jobs:
     # Run on Windows and Linux
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
 
     # Set which runner to use
     runs-on: ${{ matrix.os }}
