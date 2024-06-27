@@ -9,10 +9,14 @@ on:
     branches:
     - "*"
 
-  # Run whenever we push to main
+  # Run when we push to main and have changed the Go code or Dockerfile
   push:
     branches:
-    - "main"
+    - main
+    paths:
+    - "**/*.go"
+    - "Dockerfile"
+    - "go.*"
 
 jobs:
   # Job name
