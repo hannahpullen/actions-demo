@@ -1,6 +1,9 @@
 name: Run tests and lint
 
 on:
+  # Enable manually triggering this workflow
+  dispatch_workflow:
+  
   # Run whenever a pull request is opened on any branch
   pull_request:
     branches:
