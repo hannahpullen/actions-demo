@@ -1,5 +1,5 @@
 # Stage 1: Build the binary
-ARG GO_VERSION=1.22.4
+ARG GO_VERSION
 FROM golang:${GO_VERSION} AS builder
 
 WORKDIR /app

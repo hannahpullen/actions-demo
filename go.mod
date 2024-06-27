@@ -1,6 +1,6 @@
 module github.com/hannahpullen/actions-demo
 
-go 1.22.4
+go 1.22.2
 
 require go.uber.org/zap v1.27.0
 
