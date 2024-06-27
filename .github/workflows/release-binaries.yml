@@ -7,6 +7,7 @@ on:
 
 jobs:
   release-linux:
+    permissions: write-all
     runs-on: ubuntu-latest
     env:
       artifact: adder-${{ github.event.release.tag_name }}.tar.gz
@@ -32,6 +33,7 @@ jobs:
       run: gh release upload ${{ github.event.release.tag_name }} ${{ env.artifact }}
 
   release-windows:
+    permissions: write-all
     runs-on: windows-latest
     env:
       artifact: adder-${{ github.event.release.tag_name }}.zip
