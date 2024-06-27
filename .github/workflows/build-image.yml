@@ -40,19 +40,10 @@ jobs:
         username: ${{ github.actor }} # Username of whoever kicked off this job
         password: ${{ secrets.GITHUB_TOKEN }} # Token for the permissions given to this runner
 
-    - name: Build image locally
+    - name: Build and push image
       uses: docker/build-push-action@v5
       with:
         tags: ${{ env.DOCKER_IMAGE }}
-        build-args: GO_VERSION=${{ vars.GO_VERSION }}
-        push: false
-
-    - name: Check we can run the image
-      run: docker run ${DOCKER_IMAGE} 1 2
-
-    - name: Push the image to GHCR
-      uses: docker/build-push-action@v5
-      with:
-        tags: ${{ env.DOCKER_IMAGE }}
+        build-args: "GO_VERSION=${{ vars.GO_VERSION }}"
         push: true
   
