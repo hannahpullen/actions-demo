@@ -48,7 +48,7 @@ jobs:
         go-version: ${{ vars.GO_VERSION }}
 
     - name: Build executable
-      run: env CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o adder.exe cmd/mjssetup/main.go
+      run: env CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o adder.exe cmd/main.go
 
     - name: Create zip file
       run: Compress-Archive -Path adder.exe -Destination ${{ env.artifact }}
