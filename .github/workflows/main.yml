@@ -29,7 +29,7 @@ jobs:
     # Define environment
     env:
       EXE_NAME: adder.exe
-      IMAGE_TAG: adder-image
+      IMAGE_TAG: adder-image:latest
 
     # Define steps for the job
     steps:
@@ -56,6 +56,7 @@ jobs:
       with:
         push: false
         tag: ${{ env.IMAGE_TAG }}
+        load: true
 
     - name: Check we can run the Docker image
       run: docker run ${IMAGE_TAG} 3 4
