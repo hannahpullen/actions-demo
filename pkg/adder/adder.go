@@ -33,7 +33,7 @@ func (a *Adder) Add(numsToAdd ...string) (float64, error) {
 
 	total := 0.0
 	for _, n := range toAdd {
-		total += n
+		total -= n
 	}
 	a.logger.Info("Got total", zap.Float64("total", total))
 	return total, nil
